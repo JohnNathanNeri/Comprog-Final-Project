@@ -1,24 +1,21 @@
-# Shopping Cart System with Predefined Items and Prices
 
-# Predefined list of items and their prices
 available_items = [
-    {"name": "Apple", "price": 1.00},
-    {"name": "Banana", "price": 0.50},
-    {"name": "Orange", "price": 0.75},
-    {"name": "Milk", "price": 2.50},
-    {"name": "Bread", "price": 1.50}
+    {"name": "Hotdog", "price": 1.00},
+    {"name": "Phone", "price": 0.50},
+    {"name": "Pencil", "price": 0.75},
+    {"name": "Shirt", "price": 2.50},
+    {"name": "Keyboard", "price": 1.50}
 ]
 
-# List to store items added to the cart
+
 shopping_cart = []
 
-# Function to display available items
+
 def display_available_items():
     print("\nAvailable Items:")
     for i, item in enumerate(available_items, 1):
         print(f"{i}. {item['name']} - ${item['price']}")
 
-# Function to display the cart
 def display_cart():
     if not shopping_cart:
         print("\nYour cart is empty.")
@@ -31,7 +28,7 @@ def display_cart():
         print(f"\nTotal Price: ${total}")
         return total
 
-# Function to add an item to the cart
+
 def add_item():
     while True:
         display_available_items()
@@ -39,7 +36,7 @@ def add_item():
         if choice.lower() == "back":
             print("Returning to the main menu...")
             break
-        item_index = int(choice) - 1  # Convert to 0-based index
+        item_index = int(choice) - 1 
         if 0 <= item_index < len(available_items):
             selected_item = available_items[item_index]
             shopping_cart.append(selected_item)
@@ -47,7 +44,7 @@ def add_item():
         else:
             print("Invalid choice. Please select a valid item number.")
 
-# Function to remove an item from the cart
+
 def remove_item():
     if not shopping_cart:
         print("\nYour cart is empty. Nothing to remove.")
@@ -60,12 +57,12 @@ def remove_item():
     else:
         print("Invalid item number.")
 
-# Function to checkout with payment validation
+
 def checkout():
     if not shopping_cart:
         print("\nYour cart is empty. Add some items before checking out.")
     else:
-        total = display_cart()  # Display the cart and calculate total
+        total = display_cart() 
         while True:
             amount_paid = float(input(f"\nYour total is ${total}. Please enter the amount you wish to pay: $"))
             if amount_paid >= total:
@@ -73,13 +70,13 @@ def checkout():
                 print(f"\nThank you for your payment of ${amount_paid}.")
                 if change > 0:
                     print(f"Your change is: ${change}.")
-                shopping_cart.clear()  # Clear the cart after successful checkout
+                shopping_cart.clear()
                 print("Thank you for shopping with us!")
                 break
             else:
                 print("Insufficient amount. Please enter a payment that is greater than or equal to the total amount.")
 
-# Main menu function
+
 def shopping_cart_menu():
     while True:
         print("\nShopping Cart Menu:")
@@ -89,7 +86,7 @@ def shopping_cart_menu():
         print("4. Checkout")
         print("5. Exit")
 
-        # Get user choice
+ 
         choice = input("Enter your choice (1-5): ")
 
         if choice == "1":
@@ -106,5 +103,5 @@ def shopping_cart_menu():
         else:
             print("Invalid choice. Please enter a number between 1 and 5.")
 
-# Run the shopping cart system
+
 shopping_cart_menu()
