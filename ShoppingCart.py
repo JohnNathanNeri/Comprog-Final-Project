@@ -1,33 +1,33 @@
-
 available_items = [
-    {"name": "Hotdog", "price": 1.00},
-    {"name": "Phone", "price": 0.50},
-    {"name": "Pencil", "price": 0.75},
-    {"name": "Shirt", "price": 2.50},
-    {"name": "Keyboard", "price": 1.50}
+    {"name": "Hotdog", "price": 100.00},
+    {"name": "Phone", "price": 200.50},
+    {"name": "Pencil", "price": 50.75},
+    {"name": "Shirt", "price": 89.50},
+    {"name": "Keyboard", "price": 999.50}
 ]
-
 
 shopping_cart = []
 
-
 def display_available_items():
     print("\nAvailable Items:")
-    for i, item in enumerate(available_items, 1):
-        print(f"{i}. {item['name']} - ${item['price']}")
+    item_number = 1
+    for item in available_items:
+        print(f"{item_number}. {item['name']} - ${item['price']}")
+        item_number += 1
 
 def display_cart():
-    if not shopping_cart:
+    if len(shopping_cart) == 0:
         print("\nYour cart is empty.")
     else:
         print("\nItems in your cart:")
         total = 0
-        for i, item in enumerate(shopping_cart, 1):
-            print(f"{i}. {item['name']} - ${item['price']}")
+        item_number = 1
+        for item in shopping_cart:
+            print(f"{item_number}. {item['name']} - ${item['price']}")
             total += item["price"]
+            item_number += 1
         print(f"\nTotal Price: ${total}")
         return total
-
 
 def add_item():
     while True:
@@ -44,22 +44,20 @@ def add_item():
         else:
             print("Invalid choice. Please select a valid item number.")
 
-
 def remove_item():
-    if not shopping_cart:
+    if len(shopping_cart) == 0:
         print("\nYour cart is empty. Nothing to remove.")
-        return
-    display_cart()
-    item_number = int(input("\nEnter the number of the item to remove: "))
-    if 1 <= item_number <= len(shopping_cart):
-        removed_item = shopping_cart.pop(item_number - 1)
-        print(f"'{removed_item['name']}' has been removed from your cart.")
     else:
-        print("Invalid item number.")
-
+        display_cart()
+        item_number = int(input("\nEnter the number of the item to remove: "))
+        if 1 <= item_number <= len(shopping_cart):
+            removed_item = shopping_cart.pop(item_number - 1)
+            print(f"'{removed_item['name']}' has been removed from your cart.")
+        else:
+            print("Invalid item number.")
 
 def checkout():
-    if not shopping_cart:
+    if len(shopping_cart) == 0:
         print("\nYour cart is empty. Add some items before checking out.")
     else:
         total = display_cart() 
@@ -76,7 +74,6 @@ def checkout():
             else:
                 print("Insufficient amount. Please enter a payment that is greater than or equal to the total amount.")
 
-
 def shopping_cart_menu():
     while True:
         print("\nShopping Cart Menu:")
@@ -86,7 +83,6 @@ def shopping_cart_menu():
         print("4. Checkout")
         print("5. Exit")
 
- 
         choice = input("Enter your choice (1-5): ")
 
         if choice == "1":
@@ -102,6 +98,5 @@ def shopping_cart_menu():
             break
         else:
             print("Invalid choice. Please enter a number between 1 and 5.")
-
 
 shopping_cart_menu()
